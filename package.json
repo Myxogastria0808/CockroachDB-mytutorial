@@ -8,7 +8,8 @@
     "scripts": {
         "ts-node-dev": "ts-node-dev src/index.ts",
         "studio": "prisma studio",
-        "migrate": "prisma migrate dev --name init",
+        "migrate": "prisma migrate dev --name init && prisma generate",
+        "generate": "prisma generate",
         "compile": "tsc -p ."
     },
     "dependencies": {
