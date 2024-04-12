@@ -1,0 +1,4 @@
+{
+    "cSpell.words": ["cockroachdb", "Hocevar", "mytutorial", "Myxogastria"],
+    "[prisma]": { "editor.defaultFormatter": "Prisma.prisma" }
+}

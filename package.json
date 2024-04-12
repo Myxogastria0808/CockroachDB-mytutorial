@@ -1,0 +1,21 @@
+{
+    "name": "cockroachdb-mytutorial",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "repository": "https://github.com/Myxogastria0808/CockroachDB-mytutorial.git",
+    "author": "'Myxogastria0808' <r.rstudio.c@gmail.com>",
+    "license": "WTFPL",
+    "scripts": {
+        "ts-node-dev": "ts-node-dev src/index.ts",
+        "studio": "prisma studio",
+        "migrate": "prisma migrate dev --name init",
+        "compile": "tsc -p ."
+    },
+    "dependencies": {
+        "@prisma/client": "^5.12.1",
+        "@types/node": "^20.12.7",
+        "prisma": "^5.12.1",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.4.5"
+    }
+}
