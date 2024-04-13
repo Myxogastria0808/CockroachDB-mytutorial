@@ -19,3 +19,22 @@ yarn init:prisma
 yarn compile
 yarn start
 ```
+
+# テーブル構造
+
+```mermaid
+erDiagram
+    SampleRecordId ||--|{ Sample : autoincrement
+    SampleRecordId {
+        BigInt cockroachdbId PK, UK "@id @default(autoincrement())"
+        BigInit id UK "@unique"
+        Tag tag
+        Sample? sample
+    }
+    Sample {
+        BigInt cockroachdbId PK, UK "@id @default(autoincrement())"
+        String title
+        String content
+        BigInt id FK "@relation(fields: [id], references: [id])"
+    }
+```
