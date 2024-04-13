@@ -35,6 +35,6 @@ erDiagram
         BigInt cockroachdbId PK, UK "@id @default(autoincrement())"
         String title
         String content
-        BigInt id FK "@relation(fields: [id], references: [id])"
+        BigInt id FK, UK "@relation(fields: [id], references: [id]) @unique"
     }
 ```
