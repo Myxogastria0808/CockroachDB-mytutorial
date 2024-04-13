@@ -24,12 +24,12 @@ yarn start
 
 ```mermaid
 erDiagram
-    SampleRecordId ||--|{ Sample : autoincrement
+    SampleRecordId ||--|| Sample : autoincrement
     SampleRecordId {
         BigInt cockroachdbId PK, UK "@id @default(autoincrement())"
         BigInit id UK "@unique"
-        Tag tag
-        Sample? sample
+        Tag tag "'LATEST' or 'OLD'"
+        Sample sample "actually Sample?"
     }
     Sample {
         BigInt cockroachdbId PK, UK "@id @default(autoincrement())"
