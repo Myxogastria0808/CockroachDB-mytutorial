@@ -6,10 +6,11 @@
     "author": "'Myxogastria0808' <r.rstudio.c@gmail.com>",
     "license": "WTFPL",
     "scripts": {
-        "start": "node dist/index.js",
+        "start": "tsc -p . && node dist/index.js",
         "ts-node-dev": "ts-node-dev src/index.ts",
         "studio": "prisma studio",
         "migrate": "prisma migrate dev --name init && prisma generate",
+        "init:prisma": "tsc -p . && node dist/init.js",
         "generate": "prisma generate",
         "compile": "tsc -p ."
     },

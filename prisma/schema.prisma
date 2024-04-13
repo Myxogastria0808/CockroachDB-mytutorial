@@ -13,8 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Tag {
+  LATEST
+  OLD
+}
+
+//絶対に消してはいけないレコード
+//最新のレコードのみ、tagがLATESTになる
+//それ以外のtagは、OLD
+model SampleRecordId {
+  cockroachdbId BigInt  @id @default(autoincrement())
+  id            BigInt  @unique
+  tag           Tag
+  sample        Sample?
+}
+
+//SampleRecordIdがないと、Sampleは作れない
 model Sample {
-  id      BigInt @id @default(autoincrement())
-  title   String
-  content String
+  cockroachdbId  BigInt         @id @default(autoincrement())
+  title          String
+  content        String
+  sampleRecordId SampleRecordId @relation(fields: [id], references: [id])
+  id             BigInt         @unique
 }

@@ -1,32 +1,26 @@
 import { PrismaClient } from '@prisma/client';
+import { CockroachDBSampleType } from '../types/index';
 
 const prisma = new PrismaClient();
 
-const findFirstSample = async (id?: number, title?: string) => {
-    const result:
-        | {
-              id: bigint;
-              title: string;
-              content: string;
-          }[]
-        | null = await prisma.sample.findMany({
+const findUniqueSample = async (id: number) => {
+    const result: CockroachDBSampleType[] = await prisma.sample.findMany({
         where: {
-            OR: [
-                {
-                    id,
-                },
-                {
-                    title,
-                },
-            ],
+            id,
         },
     });
-    console.log(result);
+    if (result.length === 1) {
+        console.log(result);
+    } else if (result.length > 1) {
+        throw `id: (${id}) exists in multiple.`;
+    } else {
+        throw `id: (${id}) is not exits.`;
+    }
 };
 
 const findAllSample = async () => {
-    const result = await prisma.sample.findMany();
+    const result: CockroachDBSampleType[] = await prisma.sample.findMany();
     console.log(result);
 };
 
-export { findFirstSample, findAllSample };
+export { findUniqueSample, findAllSample };

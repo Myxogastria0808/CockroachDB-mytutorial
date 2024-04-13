@@ -1,20 +1,30 @@
 import { PrismaClient } from '@prisma/client';
-import { SampleType } from 'types';
+import { CockroachDBSampleType, RecordType } from '../types/index';
 
 const prisma = new PrismaClient();
 
-const updateSample = async (id: number, sample: SampleType) => {
-    const result: {
-        id: bigint;
-        title: string;
-        content: string;
-    } = await prisma.sample.update({
+const updateSingleSample = async (id: number, data: RecordType) => {
+    const result: CockroachDBSampleType[] = await prisma.sample.findMany({
         where: {
             id,
         },
-        data: sample,
     });
-    console.log(result);
+    if (result.length === 1) {
+        const updatedResult: CockroachDBSampleType = await prisma.sample.update({
+            where: {
+                id: result[0].id,
+            },
+            data: {
+                title: data.title,
+                content: data.content,
+            },
+        });
+        console.log(updatedResult);
+    } else if (result.length > 1) {
+        throw `id: (${id}) exists in multiple.`;
+    } else {
+        throw `id: (${id}) is not exits.`;
+    }
 };
 
-export { updateSample };
+export { updateSingleSample };
