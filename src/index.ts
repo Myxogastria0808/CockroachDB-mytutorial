@@ -6,7 +6,7 @@ import { deleteSingleSample } from './delete/index';
 
 const prisma = new PrismaClient();
 
-//test
+//*test
 // import { CockroachDBSampleRecordIdType } from 'types';
 
 // const findAllSampleRecordId = async () => {
